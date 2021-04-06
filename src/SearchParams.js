@@ -10,6 +10,7 @@ const SearchParams = () => {
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
+  const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const SearchParams = () => {
     );
     const json = await res.json();
     setPets(json.pets);
+    setLoading(false);
   }
 
   return (
@@ -90,7 +92,7 @@ const SearchParams = () => {
         </label>
         <button style={{ backgroundColor: theme }}>Submit</button>
       </form>
-      <Results pets={pets} />
+      <Results pets={pets} loading={loading} />
     </div>
   );
 };

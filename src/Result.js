@@ -1,6 +1,9 @@
 import Pet from "./Pet";
 
-const Result = ({ pets }) => {
+const Result = ({ pets, loading }) => {
+  if (loading) {
+    return <h2 className="search">Loading...</h2>;
+  }
   return (
     <div className="search">
       {!pets.length ? (
